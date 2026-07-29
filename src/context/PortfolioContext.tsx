@@ -2,14 +2,16 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
-interface Experience {
+export interface Experience {
   role: string;
   company: string;
+  location?: string;
   date: string;
+  category: 'IT' | 'VA';
   description: string | string[];
 }
 
-interface Project {
+export interface Project {
   title: string;
   description: string;
   tags: string[];
@@ -17,117 +19,205 @@ interface Project {
   githubUrl: string;
 }
 
-interface PortfolioData {
+export interface PortfolioData {
   name: string;
   role: string;
   bio: string;
-  aboutText1: string;
-  aboutText2: string;
+  aboutITText1: string;
+  aboutITText2: string;
+  aboutVAText1: string;
+  aboutVAText2: string;
   email: string;
   phone: string;
   location: string;
+  portfolioUrl: string;
+  education: {
+    tertiary: { school: string; degree: string; location: string; years: string };
+    secondary: { school: string; location: string; years: string };
+  };
+  achievements: string[];
+  itSkills: string[];
+  vaSkills: string[];
   experiences: Experience[];
   projects: Project[];
 }
 
 const defaultData: PortfolioData = {
   name: "ERWIN RILLORTA",
-  role: "Full Stack ERP Web Developer",
-  bio: "Full Stack Developer specializing in scalable web applications, REST APIs, system architecture, and high-performance systems. Experienced in building enterprise-level platforms.",
-  aboutText1: "I am a results-driven IT Professional transitioning from Senior Full Stack Development to Project Management. I specialize in designing, developing, and leading teams to deliver scalable enterprise applications using Agile methodologies.",
-  aboutText2: "I am adept at system architecture, full SDLC management, and cross-functional collaboration to build custom ERP modules that streamline business processes, enhance operational efficiency, and drive digital transformation.",
-  email: "erwin.rillorta.0330@gmail.com",
-  phone: "+63 967 302 5852",
-  location: "Dagupan City, Pangasinan, PH",
+  role: "Virtual Assistant & IT Specialist",
+  bio: "Results-driven IT Specialist & Executive Virtual Assistant with over 5 years of hands-on experience in IT support, system administration, software development, social media management, graphic design, video editing, and e-commerce operations.",
+  aboutITText1: "I am a dedicated IT Specialist & Systems Developer holding a Bachelor of Science in Information Technology from Universidad de Dagupan. I specialize in system administration, database management (MySQL), Odoo framework module customization, network administration (CCNA certified), and full SDLC software development.",
+  aboutITText2: "From architecting ERP solutions and developing custom technical report systems to configuring IVMS biometrics, Zendesk ticketing, and Helpdesk workflows, I deliver exceptional remote technical support, hardware/software troubleshooting, and high-performance IT solutions.",
+  aboutVAText1: "I am a versatile Executive Virtual Assistant, Content Creator, and E-commerce Specialist. I help international clients, businesses, and brands in Norway, the US, and the Philippines streamline administrative tasks, expand online reach, and boost revenue across TikTok, YouTube, Shopify, Etsy, and eBay.",
+  aboutVAText2: "My expertise spans Social Media Management, Graphic Design (brochures, logos, T-shirt designs), Video Editing (TikTok/YouTube content), workflow automations (Zapier, ChatGPT & Google Sheets AI prompts, Dropbox), content scheduling, SEO, and e-commerce product listings.",
+  email: "erwinrillorta.0330@gmail.com",
+  phone: "09396073451",
+  location: "Dagupan City, Pangasinan, Philippines",
+  portfolioUrl: "myprofile.ph/erwinrillorta",
+  education: {
+    tertiary: {
+      school: "Universidad de Dagupan",
+      degree: "Bachelor of Science in Information Technology",
+      location: "Dagupan City, Pangasinan",
+      years: "2019 - 2024"
+    },
+    secondary: {
+      school: "Mangaldan National High School",
+      location: "Mangaldan, Pangasinan",
+      years: "2013 - 2019"
+    }
+  },
+  achievements: [
+    "Hackathon 2020 Champion",
+    "Dean's Lister 2021",
+    "NetAcad Passer (Cybersecurity)",
+    "NetAcad CCNA Passer"
+  ],
+  itSkills: [
+    "Odoo Framework",
+    "MySQL (Database)",
+    "PHP / Laravel",
+    "JavaScript / jQuery",
+    "Bootstrap & HTML/CSS",
+    "System Architecture",
+    "IVMS Biometrics Config",
+    "Zendesk / Helpdesk Workflows",
+    "NetAcad CCNA & Cybersecurity",
+    "Hardware & Network Config",
+    "Assembly & Java",
+    "Salesforce"
+  ],
+  vaSkills: [
+    "Social Media Management (TikTok/FB)",
+    "Graphic Design (Canva/Ps/Figma)",
+    "Video Editing (Premiere Pro)",
+    "Shopify Store Customization & SEO",
+    "Etsy & Ebay Product Listing",
+    "Zapier Automation",
+    "ChatGPT & AI Prompt Engineering",
+    "Content Scheduling & Research",
+    "Dropbox & Cloud Data Management",
+    "E-commerce Funnel Building",
+    "T-Shirt & Brochure Design",
+    "Customer Service & Admin Support"
+  ],
   experiences: [
-    {
-      role: "Project Manager",
-      company: "Vertex Technology Corporation",
-      date: "Apr 2026 - Present",
-      description: [
-        "Lead a team of developers in the end-to-end development of core custom ERP modules, including physical inventory, sales orders, purchasing, serialized tracking, and RFID product integration.",
-        "Manage multiple concurrent software projects utilizing Agile and Scrum methodologies across the full Software Development Life Cycle (SDLC).",
-        "Oversee database architecture, UI/UX implementation, and comprehensive end-to-end testing to ensure seamless system functionality, high performance, and successful deployment.",
-        "Utilize ClickUp and various CRM tools to track project milestones, manage strict resource deadlines, and facilitate cross-functional team collaboration."
-      ]
-    },
-    {
-      role: "Senior Full Stack Web Developer",
-      company: "Vertex Technology Corporation",
-      date: "Apr 2025 - May 2026",
-      description: [
-        "Architected and developed a custom ERP system encompassing Sales, Inventory, Finance, HR, Attendance, and Service Operations.",
-        "Built scalable ERP web modules using Next.js, React, and TypeScript for Purchase Orders (PO), Accounts Payable (AP), expenses, inventory, and comprehensive dashboards.",
-        "Designed and optimized MySQL databases utilizing normalized schemas, indexes, and relational integrity to ensure high performance and data security.",
-        "Developed and integrated RESTful APIs using PHP and Laravel, ensuring seamless communication across various system components.",
-        "Implemented Directus CMS for flexible data management and deployed web applications on production and shared hosting environments.",
-        "Created financial and operational reports (AP aging, VAT/EWT, stock movement) and built responsive, reusable UI components using Tailwind CSS."
-      ]
-    },
-    {
-      role: "Technical Support Representative (GoodWe Account)",
-      company: "Brandlink PH",
-      date: "Sep 2024 - Feb 2025",
-      description: [
-        "Resolved technical inquiries related to GoodWe solar inverters utilizing the SEMS Portal, IoT Management Platform, and GoodWe Management Platform.",
-        "Managed and tracked support tickets via Zendesk, ensuring timely and accurate resolution of customer issues.",
-        "Guided customers through Wi-Fi configurations using the SolarGo App and Web UI, and successfully troubleshot Wi-Fi 1.0 and 2.0 modules.",
-        "Assisted with post-setup checks, firmware updates, and remote monitoring while coordinating effectively with internal teams."
-      ]
-    },
     {
       role: "IT Specialist",
       company: "Green Marine",
-      date: "Aug 2024 - Apr 2025",
+      location: "Metairie, LA, USA",
+      date: "August 2024 – April 2025",
+      category: "IT",
       description: [
-        "Configured and customized core business modules within the Odoo Framework, including Helpdesk, CRM, Contacts, and Website.",
-        "Tailored CRM workflows and Helpdesk ticketing systems to align with company requirements and improve customer response times.",
-        "Conducted product research, handled large-scale product imports, and maintained accurate contact databases and website content."
+        "Configured and customized various core modules within the Odoo Framework (Helpdesk, CRM, Contacts, Website).",
+        "Conducted in-depth product research and handled bulk product imports.",
+        "Customized CRM workflows and Helpdesk ticketing systems for streamlined support.",
+        "Maintained and updated contact databases and website content.",
+        "Funnel Builder: Created and designed E-commerce Websites for the company."
       ]
     },
     {
-      role: "IT Specialist",
+      role: "Assistant Manager / Virtual Assistant",
       company: "LESS",
-      date: "Aug 2023 - Apr 2024",
+      location: "Smestad, Oslo, Norway",
+      date: "August 2023 – April 2024",
+      category: "VA",
       description: [
-        "Managed cross-functional operations including social media, graphic design, and video production for a diverse portfolio.",
-        "Developed and executed social media posting strategies and content on TikTok, enhancing audience engagement.",
-        "Created various graphic assets, including T-shirt designs, E-commerce banners for Shopify, and webpage content.",
-        "Translated and localized media content slideshows for international distribution.",
-        "Developed workflow automations using Zapier and integrated AI tools like ChatGPT into data processes.",
-        "Administered E-commerce operations on the Shopify platform, covering product listings, website customization, and SEO.",
-        "Managed backend operations with content scheduling, extensive product research, and comprehensive design organization."
+        "Social Media Manager (TikTok): Daily posting, content creation, and customer engagement management.",
+        "Graphic Designer: Created T-shirt designs, Shopify website banners, webpage content, and translated media slideshows.",
+        "Programmer & Automation: Created automations in Zapier, custom ChatGPT & Google Sheets prompts, and Dropbox automations.",
+        "Video Editor & Shopify: Edited videos, product listing, Shopify website customization, and SEO.",
+        "Data Entry: Content scheduling, market research, and design asset organization."
       ]
     },
     {
-      role: "IT Intern",
-      company: "OFC IT Solutions and Technologies",
-      date: "Mar 2023 - Jul 2023",
+      role: "Content Creator & Virtual Assistant",
+      company: "Upper Echelon Capital LLC",
+      location: "Saint Petersburg, Florida, USA",
+      date: "August 2023 – October 2023",
+      category: "VA",
       description: [
-        "Developed custom functional systems for technicians, administrators, and managers, including a Technical Service Report System.",
-        "Configured IVMS (Intelligent Video Management System) for accurate biometrics and employee attendance tracking."
+        "Social Media Management: Created and published content for social platforms to boost client credit awareness.",
+        "Graphic Designer & Video Editor: Produced social content, brochures, logos, documents, and videos for YouTube and TikTok.",
+        "Etsy & Ebay: Handled product listings, created/customized stores, and managed customer inquiries."
+      ]
+    },
+    {
+      role: "YouTube Content Creator & Video Editor",
+      company: "CRUTUX LLC",
+      location: "Sugar Land, Texas, USA",
+      date: "April 2023 – July 2023",
+      category: "VA",
+      description: [
+        "Worked as Video Editor and Thumbnail Creator for two YouTube accounts.",
+        "Edited YouTube videos including compilations and personal experience narratives."
+      ]
+    },
+    {
+      role: "Content Creator & Virtual Assistant",
+      company: "AIM4ASSETS LLC",
+      location: "Saint Petersburg, Florida, USA",
+      date: "March 2022 – October 2022",
+      category: "VA",
+      description: [
+        "Social Media Manager: Handled social media posting, content creation, and customer management.",
+        "Graphic Designer & Video Editor: Designed brochures, book covers, documents, and edited video content for social media."
+      ]
+    },
+    {
+      role: "IT Intern & System Developer",
+      company: "OFC IT Solutions and Technologies",
+      location: "Binmaley, Pangasinan, Philippines",
+      date: "March 2023 – July 2023",
+      category: "IT",
+      description: [
+        "System Developer: Built custom functional systems for Technicians, Administrators, and Managers, including a Technical Service Report System.",
+        "Technical Operations: Configured IVMS for biometrics and attendance tracking; handled printer installation & network config.",
+        "Graphic & Social Media: Created tarpaulin designs, brochures, calling cards, and car wrapping designs."
+      ]
+    },
+    {
+      role: "Social Media Manager & Graphic Designer",
+      company: "A & T Agricultural Machinery Spare Parts & Trading",
+      location: "Mangaldan, Pangasinan, Philippines",
+      date: "January 2021 – November 2021",
+      category: "VA",
+      description: [
+        "Social Media Manager: Posted and managed all agricultural spare parts product listings on Facebook.",
+        "Graphic Designer: Created Facebook page graphics, brochures, calling cards, and tarpaulins."
+      ]
+    },
+    {
+      role: "Project Manager & Senior ERP Developer",
+      company: "Vertex Technology Corporation",
+      location: "Philippines",
+      date: "April 2025 – Present",
+      category: "IT",
+      description: [
+        "Lead developer for enterprise ERP modules (Sales, Purchasing, Serialized Tracking, RFID Integration).",
+        "Architected scalable web modules using Next.js, React, TypeScript, PHP Laravel, and MySQL databases."
       ]
     }
   ],
   projects: [
     {
-      title: "Custom ERP System",
-      description: "Architected and developed a custom ERP system encompassing Sales, Inventory, Finance, HR, Attendance, and Service Operations.",
-      tags: ["Next.js", "React", "TypeScript", "MySQL", "Laravel"],
+      title: "Odoo ERP & E-Commerce Funnel",
+      description: "Customized Odoo modules (CRM, Helpdesk, Contacts) and built high-converting e-commerce funnels for Green Marine.",
+      tags: ["Odoo Framework", "CRM Workflows", "E-commerce", "Funnel Builder"],
       liveUrl: "#",
       githubUrl: "https://github.com/Erwinrillorta0830"
     },
     {
-      title: "Technical Service Report System",
-      description: "Developed custom functional systems for technicians, administrators, and managers for efficient reporting and biometrics tracking.",
-      tags: ["System Architecture", "Hardware Config", "UI/UX"],
+      title: "Technical Service Report System & Biometrics",
+      description: "Built custom technical reporting systems for technicians and managers, integrated with IVMS attendance tracking.",
+      tags: ["System Architecture", "MySQL", "IVMS Biometrics", "PHP/Laravel"],
       liveUrl: "#",
       githubUrl: "https://github.com/Erwinrillorta0830"
     },
     {
-      title: "E-Commerce Website Builder",
-      description: "Created and designed an E-commerce website for the company utilizing comprehensive funnel building techniques.",
-      tags: ["E-commerce", "Funnel Building", "Design"],
+      title: "Automation & E-Commerce Management Suite",
+      description: "Automated business workflows via Zapier & ChatGPT, managed multi-channel stores on Shopify, Etsy, and eBay with full SEO.",
+      tags: ["Zapier", "ChatGPT Prompts", "Shopify", "Etsy/eBay SEO", "Canva/Ps"],
       liveUrl: "#",
       githubUrl: "https://github.com/Erwinrillorta0830"
     }
@@ -187,3 +277,4 @@ export function usePortfolio() {
   }
   return context;
 }
+

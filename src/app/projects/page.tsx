@@ -139,7 +139,7 @@ export default function ProjectsPage() {
                     
                     {/* Vector Graphic Banner */}
                     <div className="mb-6 relative">
-                      <ProjectVectorGraphics type={project.vectorType} imageUrl={project.imageUrl} className="w-full h-48" />
+                      <ProjectVectorGraphics type={project.vectorType} imageUrl={project.imageUrl} images={project.images} className="w-full h-48" />
                       {project.category && (
                         <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-slate-950/80 backdrop-blur-md border border-white/10 text-[10px] font-mono font-bold text-cyan-400 uppercase tracking-widest">
                           {project.category}
@@ -258,7 +258,7 @@ export default function ProjectsPage() {
 
               {/* Large Vector Graphic / Screenshot Display */}
               <div className="mb-6">
-                <ProjectVectorGraphics type={activeModalProject.vectorType} imageUrl={activeModalProject.imageUrl} className="w-full h-64" />
+                <ProjectVectorGraphics type={activeModalProject.vectorType} imageUrl={activeModalProject.imageUrl} images={activeModalProject.images} className="w-full h-64" />
               </div>
 
               <div className="mb-6">
@@ -294,7 +294,7 @@ export default function ProjectsPage() {
               </div>
 
               {/* Actions */}
-              <div className="flex justify-end gap-3 pt-6 border-t border-white/10">
+              <div className="flex flex-wrap justify-end gap-3 pt-6 border-t border-white/10">
                 <button
                   onClick={() => setActiveModalProject(null)}
                   className="px-6 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 text-xs font-mono font-bold uppercase"
@@ -306,10 +306,21 @@ export default function ProjectsPage() {
                     href={activeModalProject.githubUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="px-6 py-2.5 rounded-xl bg-blue-500 hover:bg-blue-400 text-slate-950 text-xs font-black uppercase tracking-wider inline-flex items-center gap-2"
+                    className="px-6 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10 text-white text-xs font-black uppercase tracking-wider inline-flex items-center gap-2"
                   >
                     <GitBranch size={15} />
                     <span>View Repository</span>
+                  </a>
+                )}
+                {activeModalProject.liveUrl && activeModalProject.liveUrl !== "#" && (
+                  <a
+                    href={activeModalProject.liveUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-400 hover:to-cyan-400 text-slate-950 text-xs font-black uppercase tracking-wider inline-flex items-center gap-2 shadow-[0_0_20px_rgba(59,130,246,0.4)]"
+                  >
+                    <ExternalLink size={15} />
+                    <span>Launch Live Prototype</span>
                   </a>
                 )}
               </div>

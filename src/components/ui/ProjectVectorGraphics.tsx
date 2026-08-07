@@ -1,32 +1,121 @@
 'use client';
 
-import React from 'react';
-import { ShieldAlert } from 'lucide-react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ShieldAlert, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface ProjectVectorProps {
   type?: 'divi-erp' | 'field-management' | 'vos-sync' | 'industrial-distribution' | 'mmpa-erp' | string;
   className?: string;
   imageUrl?: string;
+  images?: string[];
+  interval?: number;
 }
 
 export const ProjectVectorGraphics: React.FC<ProjectVectorProps> = ({ 
   type = 'divi-erp', 
   className = "w-full h-48",
-  imageUrl 
+  imageUrl,
+  images,
+  interval = 3000
 }) => {
-  if (imageUrl) {
-    return (
-      <div className={`relative overflow-hidden rounded-2xl border border-white/10 group bg-slate-950 ${className}`}>
-        {/* Screenshot Image */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img 
-          src={imageUrl} 
-          alt="ERP System Screenshot" 
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-        />
+  // Consolidate image sources
+  const imageList = Array.isArray(images) && images.length > 0
+    ? images
+    : imageUrl
+    ? [imageUrl]
+    : [];
 
-        {/* Confidential Blur Watermark Badge */}
-        <div className="absolute bottom-2.5 right-2.5 px-2.5 py-1 rounded-md bg-slate-950/80 backdrop-blur-md border border-amber-500/30 text-[10px] font-mono font-bold text-amber-400 flex items-center gap-1.5 shadow-md">
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const nextSlide = useCallback(() => {
+    if (imageList.length === 0) return;
+    setCurrentIndex((prev) => (prev + 1) % imageList.length);
+  }, [imageList.length]);
+
+  const prevSlide = useCallback(() => {
+    if (imageList.length === 0) return;
+    setCurrentIndex((prev) => (prev - 1 + imageList.length) % imageList.length);
+  }, [imageList.length]);
+
+  // Auto slide effect every 3 seconds
+  useEffect(() => {
+    if (imageList.length <= 1 || isHovered) return;
+
+    const timer = setInterval(() => {
+      nextSlide();
+    }, interval);
+
+    return () => clearInterval(timer);
+  }, [imageList.length, isHovered, interval, nextSlide]);
+
+  if (imageList.length > 0) {
+    return (
+      <div 
+        className={`relative overflow-hidden rounded-2xl border border-white/10 group bg-slate-950 ${className}`}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        {/* Animated Carousel Image */}
+        <AnimatePresence mode="wait">
+          <motion.img 
+            key={currentIndex}
+            src={imageList[currentIndex]} 
+            alt={`ERP System Screenshot ${currentIndex + 1}`} 
+            initial={{ opacity: 0, scale: 1.03 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.98 }}
+            transition={{ duration: 0.45, ease: "easeInOut" }}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+          />
+        </AnimatePresence>
+
+        {/* Carousel Navigation Controls (if multiple images) */}
+        {imageList.length > 1 && (
+          <>
+            <button
+              onClick={(e) => { e.stopPropagation(); prevSlide(); }}
+              className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-slate-950/80 hover:bg-slate-900 border border-white/20 text-white/80 hover:text-white opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 shadow-lg"
+              title="Previous Screenshot"
+            >
+              <ChevronLeft size={16} />
+            </button>
+            <button
+              onClick={(e) => { e.stopPropagation(); nextSlide(); }}
+              className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-slate-950/80 hover:bg-slate-900 border border-white/20 text-white/80 hover:text-white opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 shadow-lg"
+              title="Next Screenshot"
+            >
+              <ChevronRight size={16} />
+            </button>
+
+            {/* Pagination Dots */}
+            <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-950/80 backdrop-blur-md border border-white/10 z-20 shadow-md">
+              {imageList.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={(e) => { e.stopPropagation(); setCurrentIndex(idx); }}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    currentIndex === idx 
+                      ? 'w-6 bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.9)]' 
+                      : 'w-1.5 bg-slate-600 hover:bg-slate-400'
+                  }`}
+                  title={`Slide ${idx + 1}`}
+                />
+              ))}
+            </div>
+
+            {/* Slide Counter Indicator */}
+            <div className="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-md bg-slate-950/80 backdrop-blur-md border border-white/10 text-[10px] font-mono font-bold text-cyan-300 flex items-center gap-1.5 z-20 shadow-md">
+              <span>{currentIndex + 1} / {imageList.length}</span>
+              <span className="text-slate-500">•</span>
+              <span className="text-slate-400">3s AUTO</span>
+            </div>
+          </>
+        )}
+
+        {/* Confidential Watermark Badge */}
+        <div className="absolute bottom-2.5 right-2.5 px-2.5 py-1 rounded-md bg-slate-950/80 backdrop-blur-md border border-amber-500/30 text-[10px] font-mono font-bold text-amber-400 flex items-center gap-1.5 shadow-md z-20">
           <ShieldAlert size={12} className="text-amber-400" />
           <span>Confidential Data Obfuscated</span>
         </div>

@@ -20,6 +20,7 @@ export interface Project {
   category?: string;
   vectorType?: 'divi-erp' | 'field-management' | 'vos-sync' | 'industrial-distribution' | 'mmpa-erp';
   imageUrl?: string;
+  images?: string[];
   metrics?: string[];
   features?: string[];
   featured?: boolean;
@@ -220,21 +221,54 @@ const defaultData: PortfolioData = {
   ],
   projects: [
     {
-      title: "DIVI ERP & VOS-WEB Control Center",
-      description: "A flagship enterprise resource planning command center suite. Integrates multi-subsystem telemetry, financial ledgers, sales, purchasing, and operational analytics into a unified control surface.",
-      tags: ["Next.js", "TypeScript", "ERP Architecture", "MySQL", "Tailwind CSS"],
+      title: "MMPA Thai Parts & Accessories - Enterprise ERP System",
+      description: "A flagship multi-subsystem enterprise resource planning command center built for motor parts distribution. Features Executive BI & Analytics, Sales Management & POS Hub, MotorERP Supply Chain (SCM), Customer Relations (CRM), and Human Resources (HRM).",
+      tags: ["Next.js", "TypeScript", "ERP Architecture", "POS & Invoicing", "Supply Chain SCM", "Tailwind CSS"],
       category: "ERP Systems",
-      vectorType: "divi-erp",
-      imageUrl: "/images/projects/vos_web_erp.png",
-      featured: true,
-      metrics: ["Modular Workflows", "Real-Time Ledgers", "Role Access Control"],
-      features: [
-        "Interactive analytics command center with 6 integrated subsystems",
-        "Multi-warehouse inventory ledger tracking",
-        "Automated purchase order & vendor dispatch flows",
-        "Configurable role-based permissions matrix"
+      vectorType: "mmpa-erp",
+      imageUrl: "/images/projects/mmpa_command_center.png",
+      images: [
+        "/images/projects/mmpa_command_center.png",
+        "/images/projects/mmpa_bi_analytics.png",
+        "/images/projects/mmpa_pos_terminal.png",
+        "/images/projects/mmpa_pricing_tiers.png",
+        "/images/projects/mmpa_supplier_scm.png"
       ],
-      liveUrl: "#",
+      featured: true,
+      metrics: ["5 Core Subsystems", "Executive BI & POS", "Multi-Tier Pricing"],
+      features: [
+        "Interactive Command Center connecting 5 subsystems (BI, CRM, HRM, Sales/POS, SCM)",
+        "Executive BI & Analytics dashboard with live sales trends, inventory valuation (₱79.4M) & overdue receivables",
+        "Sales Hub POS Terminal with walk-in checkout, promo rules & 4 customer price tiers",
+        "MotorERP Supply Chain Management for Thai & local vendor procurement, POs & shipments",
+        "Human Resources (HRM) duty tracking & Customer Relations (CRM) lead pipeline"
+      ],
+      liveUrl: "https://erp-system-prototype-j1hq.vercel.app/",
+      githubUrl: "https://github.com/Erwinrillorta0830"
+    },
+    {
+      title: "OFC IT Solutions - Field Service Management System",
+      description: "A dedicated field service management system for OFC IT Solutions to handle job orders, technician dispatching, real-time service monitoring, machine repairs, time tracking, and automated PDF service report generation.",
+      tags: ["Next.js", "TypeScript", "Field Service", "Job Orders", "Technician Dispatch", "PDF Generator"],
+      category: "Operations & Field",
+      vectorType: "field-management",
+      imageUrl: "/images/projects/ofc_job_orders_dashboard.png",
+      images: [
+        "/images/projects/ofc_job_orders_dashboard.png",
+        "/images/projects/ofc_employee_portal.png",
+        "/images/projects/ofc_field_services.png",
+        "/images/projects/ofc_job_order_report.png"
+      ],
+      featured: true,
+      metrics: ["Job Order Dispatch", "Real-Time Tracking", "PDF Service Reports"],
+      features: [
+        "Centralized Employee Portal & Operations HUD for technician schedules and dispatch",
+        "Real-time job order status monitoring (Pending, Assigned, In Progress, Completed)",
+        "Technical Service Report builder with problem diagnostic logging & step-by-step resolution",
+        "Time tracking engine recording exact technician labor hours per service ticket",
+        "One-click PDF Technical Service Report generator & machine equipment history logs"
+      ],
+      liveUrl: "https://ofc-it-solutions-field-service-syst.vercel.app/",
       githubUrl: "https://github.com/Erwinrillorta0830"
     },
     {
@@ -244,6 +278,7 @@ const defaultData: PortfolioData = {
       category: "Operations & Field",
       vectorType: "field-management",
       imageUrl: "/images/projects/physical_serial_inventory.png",
+      images: ["/images/projects/physical_serial_inventory.png"],
       featured: true,
       metrics: ["System Variance Audit", "SKU Grouping", "Instant Product Scope"],
       features: [
@@ -262,6 +297,7 @@ const defaultData: PortfolioData = {
       category: "Operations & Field",
       vectorType: "industrial-distribution",
       imageUrl: "/images/projects/cylinder_assets.png",
+      images: ["/images/projects/cylinder_assets.png"],
       featured: true,
       metrics: ["Serialized Tracking", "Customer Balance Ledger", "Audit Trail Log"],
       features: [
@@ -280,6 +316,7 @@ const defaultData: PortfolioData = {
       category: "ERP Systems",
       vectorType: "vos-sync",
       imageUrl: "/images/projects/memo_approvals.png",
+      images: ["/images/projects/memo_approvals.png"],
       featured: false,
       metrics: ["Real-Time Queue", "Backlog Valuation", "Authorization Flow"],
       features: [
@@ -287,24 +324,6 @@ const defaultData: PortfolioData = {
         "Customer & supplier authorization discovery search",
         "Credit and debit memo verification and posting",
         "Peak authorization and average valuation tracking"
-      ],
-      liveUrl: "#",
-      githubUrl: "https://github.com/Erwinrillorta0830"
-    },
-    {
-      title: "MMPA Transmittal Receiving & Credit Ledger",
-      description: "Transmittal verification suite handling vendor receiving manifests, customer credit memos, chart of accounts remarks, and automated payment batch processing.",
-      tags: ["Next.js", "TypeScript", "PHP Laravel", "MySQL", "Role-Based ACL"],
-      category: "ERP Systems",
-      vectorType: "mmpa-erp",
-      imageUrl: "/images/projects/receiving_transmittals.png",
-      featured: false,
-      metrics: ["Vendor Transmittals", "Credit Memos", "Batch Payment"],
-      features: [
-        "Supplier receiving transmittals with CCM line items",
-        "Display allowance & discrepancy memo audit logging",
-        "Supplier payment scheduling & tax computation",
-        "Automated subtotal & grand total ledger calculation"
       ],
       liveUrl: "#",
       githubUrl: "https://github.com/Erwinrillorta0830"

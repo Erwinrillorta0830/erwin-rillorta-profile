@@ -60,7 +60,7 @@ export default function Projects() {
               <GlassCard accent="blue" className="h-full flex flex-col p-6 group hover:translate-y-[-4px] transition-transform duration-300">
                 {/* Visual Header with Blurred Screenshot Preview */}
                 <div className="mb-6">
-                  <ProjectVectorGraphics type={project.vectorType} imageUrl={project.imageUrl} className="w-full h-44" />
+                  <ProjectVectorGraphics type={project.vectorType} imageUrl={project.imageUrl} images={project.images} className="w-full h-44" />
                 </div>
 
                 <div className="flex-1 flex flex-col justify-between">

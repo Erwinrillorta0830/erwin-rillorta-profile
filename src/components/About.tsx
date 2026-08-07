@@ -132,9 +132,9 @@ export default function About() {
               {/* Dynamic Header Tag */}
               <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-700/50">
                 <h3 className="text-xs font-black uppercase tracking-widest flex items-center gap-2">
-                  {currentMode === 'IT' && <span className="text-cyan-400">// IT_SPECIALIST_MANIFEST</span>}
-                  {currentMode === 'VA' && <span className="text-purple-400">// VIRTUAL_ASSISTANT_MANIFEST</span>}
-                  {currentMode === 'all' && <span className="text-blue-400">// INTEGRATED_PROFILE_MANIFEST</span>}
+                  {currentMode === 'IT' && <span className="text-cyan-400">{"// IT_SPECIALIST_MANIFEST"}</span>}
+                  {currentMode === 'VA' && <span className="text-purple-400">{"// VIRTUAL_ASSISTANT_MANIFEST"}</span>}
+                  {currentMode === 'all' && <span className="text-blue-400">{"// INTEGRATED_PROFILE_MANIFEST"}</span>}
                 </h3>
                 <span className="text-[10px] font-mono px-3 py-1 rounded-full bg-slate-800 text-slate-400 border border-slate-700">
                   Mode: {currentMode.toUpperCase()}

@@ -17,6 +17,24 @@ export interface Project {
   tags: string[];
   liveUrl: string;
   githubUrl: string;
+  category?: string;
+  vectorType?: 'divi-erp' | 'field-management' | 'vos-sync' | 'industrial-distribution' | 'mmpa-erp';
+  imageUrl?: string;
+  metrics?: string[];
+  features?: string[];
+  featured?: boolean;
+}
+
+export interface DesignItem {
+  id: string;
+  title: string;
+  category: 'Branding & Logos' | 'Social Media & Banners' | 'T-Shirt & Apparel' | 'Brochures & Print' | 'Video Editing';
+  client?: string;
+  tools: string[];
+  description: string;
+  imageUrl?: string;
+  vectorStyle: 'logo' | 'banner' | 'tshirt' | 'brochure' | 'video';
+  featured?: boolean;
 }
 
 export interface PortfolioData {
@@ -40,6 +58,7 @@ export interface PortfolioData {
   vaSkills: string[];
   experiences: Experience[];
   projects: Project[];
+  designs: DesignItem[];
 }
 
 const defaultData: PortfolioData = {
@@ -103,6 +122,17 @@ const defaultData: PortfolioData = {
   ],
   experiences: [
     {
+      role: "Project Manager & Senior ERP Developer",
+      company: "Vertex Technology Corporation",
+      location: "Philippines",
+      date: "April 2025 – Present",
+      category: "IT",
+      description: [
+        "Lead developer for enterprise ERP modules (Sales, Purchasing, Serialized Tracking, RFID Integration).",
+        "Architected scalable web modules using Next.js, React, TypeScript, PHP Laravel, and MySQL databases."
+      ]
+    },
+    {
       role: "IT Specialist",
       company: "Green Marine",
       location: "Metairie, LA, USA",
@@ -154,17 +184,6 @@ const defaultData: PortfolioData = {
       ]
     },
     {
-      role: "Content Creator & Virtual Assistant",
-      company: "AIM4ASSETS LLC",
-      location: "Saint Petersburg, Florida, USA",
-      date: "March 2022 – October 2022",
-      category: "VA",
-      description: [
-        "Social Media Manager: Handled social media posting, content creation, and customer management.",
-        "Graphic Designer & Video Editor: Designed brochures, book covers, documents, and edited video content for social media."
-      ]
-    },
-    {
       role: "IT Intern & System Developer",
       company: "OFC IT Solutions and Technologies",
       location: "Binmaley, Pangasinan, Philippines",
@@ -177,6 +196,17 @@ const defaultData: PortfolioData = {
       ]
     },
     {
+      role: "Content Creator & Virtual Assistant",
+      company: "AIM4ASSETS LLC",
+      location: "Saint Petersburg, Florida, USA",
+      date: "March 2022 – October 2022",
+      category: "VA",
+      description: [
+        "Social Media Manager: Handled social media posting, content creation, and customer management.",
+        "Graphic Designer & Video Editor: Designed brochures, book covers, documents, and edited video content for social media."
+      ]
+    },
+    {
       role: "Social Media Manager & Graphic Designer",
       company: "A & T Agricultural Machinery Spare Parts & Trading",
       location: "Mangaldan, Pangasinan, Philippines",
@@ -186,40 +216,155 @@ const defaultData: PortfolioData = {
         "Social Media Manager: Posted and managed all agricultural spare parts product listings on Facebook.",
         "Graphic Designer: Created Facebook page graphics, brochures, calling cards, and tarpaulins."
       ]
-    },
-    {
-      role: "Project Manager & Senior ERP Developer",
-      company: "Vertex Technology Corporation",
-      location: "Philippines",
-      date: "April 2025 – Present",
-      category: "IT",
-      description: [
-        "Lead developer for enterprise ERP modules (Sales, Purchasing, Serialized Tracking, RFID Integration).",
-        "Architected scalable web modules using Next.js, React, TypeScript, PHP Laravel, and MySQL databases."
-      ]
     }
   ],
   projects: [
     {
-      title: "Odoo ERP & E-Commerce Funnel",
-      description: "Customized Odoo modules (CRM, Helpdesk, Contacts) and built high-converting e-commerce funnels for Green Marine.",
-      tags: ["Odoo Framework", "CRM Workflows", "E-commerce", "Funnel Builder"],
+      title: "DIVI ERP & VOS-WEB Control Center",
+      description: "A flagship enterprise resource planning command center suite. Integrates multi-subsystem telemetry, financial ledgers, sales, purchasing, and operational analytics into a unified control surface.",
+      tags: ["Next.js", "TypeScript", "ERP Architecture", "MySQL", "Tailwind CSS"],
+      category: "ERP Systems",
+      vectorType: "divi-erp",
+      imageUrl: "/images/projects/vos_web_erp.png",
+      featured: true,
+      metrics: ["Modular Workflows", "Real-Time Ledgers", "Role Access Control"],
+      features: [
+        "Interactive analytics command center with 6 integrated subsystems",
+        "Multi-warehouse inventory ledger tracking",
+        "Automated purchase order & vendor dispatch flows",
+        "Configurable role-based permissions matrix"
+      ],
       liveUrl: "#",
       githubUrl: "https://github.com/Erwinrillorta0830"
     },
     {
-      title: "Technical Service Report System & Biometrics",
-      description: "Built custom technical reporting systems for technicians and managers, integrated with IVMS attendance tracking.",
-      tags: ["System Architecture", "MySQL", "IVMS Biometrics", "PHP/Laravel"],
+      title: "Physical Serial Inventory Management",
+      description: "Comprehensive operational physical inventory audit & counting system. Features multi-branch scope controls, automated variance calculation, SKU grouping, and barcode product finder.",
+      tags: ["React", "TypeScript", "Inventory Audit", "Work Orders", "REST API"],
+      category: "Operations & Field",
+      vectorType: "field-management",
+      imageUrl: "/images/projects/physical_serial_inventory.png",
+      featured: true,
+      metrics: ["System Variance Audit", "SKU Grouping", "Instant Product Scope"],
+      features: [
+        "Real-time physical vs system count variance calculation",
+        "Branch, supplier & category scope locking filters",
+        "Loaded product finder with barcode & SKU search",
+        "Uncounted rows & zero count variance tracking"
+      ],
       liveUrl: "#",
       githubUrl: "https://github.com/Erwinrillorta0830"
     },
     {
-      title: "Automation & E-Commerce Management Suite",
-      description: "Automated business workflows via Zapier & ChatGPT, managed multi-channel stores on Shopify, Etsy, and eBay with full SEO.",
-      tags: ["Zapier", "ChatGPT Prompts", "Shopify", "Etsy/eBay SEO", "Canva/Ps"],
+      title: "Serialized Cylinder Assets & Logistics",
+      description: "Specialized enterprise logistics platform for tracking industrial gas cylinders, serial movements, customer balances, condition status, and warehouse return logs.",
+      tags: ["Next.js", "Serialized Inventory", "RFID / Barcode", "Logistics", "Tailwind CSS"],
+      category: "Operations & Field",
+      vectorType: "industrial-distribution",
+      imageUrl: "/images/projects/cylinder_assets.png",
+      featured: true,
+      metrics: ["Serialized Tracking", "Customer Balance Ledger", "Audit Trail Log"],
+      features: [
+        "Serialized cylinder asset tracking with condition logs",
+        "Customer cylinder balance & deposit ledger",
+        "Near-expiration & expired asset telemetry cards",
+        "Barcode & RFID cylinder scanner integration"
+      ],
       liveUrl: "#",
       githubUrl: "https://github.com/Erwinrillorta0830"
+    },
+    {
+      title: "Memo Approvals & Financial Authorization Queue",
+      description: "Automated credit and debit memo approval pipeline with real-time backlog valuation, authorization discovery, and multi-tier authorization workflows.",
+      tags: ["Next.js", "TypeScript", "Financial Memos", "Queue Engine", "PHP Laravel"],
+      category: "ERP Systems",
+      vectorType: "vos-sync",
+      imageUrl: "/images/projects/memo_approvals.png",
+      featured: false,
+      metrics: ["Real-Time Queue", "Backlog Valuation", "Authorization Flow"],
+      features: [
+        "Active queue metrics & backlog valuation telemetry",
+        "Customer & supplier authorization discovery search",
+        "Credit and debit memo verification and posting",
+        "Peak authorization and average valuation tracking"
+      ],
+      liveUrl: "#",
+      githubUrl: "https://github.com/Erwinrillorta0830"
+    },
+    {
+      title: "MMPA Transmittal Receiving & Credit Ledger",
+      description: "Transmittal verification suite handling vendor receiving manifests, customer credit memos, chart of accounts remarks, and automated payment batch processing.",
+      tags: ["Next.js", "TypeScript", "PHP Laravel", "MySQL", "Role-Based ACL"],
+      category: "ERP Systems",
+      vectorType: "mmpa-erp",
+      imageUrl: "/images/projects/receiving_transmittals.png",
+      featured: false,
+      metrics: ["Vendor Transmittals", "Credit Memos", "Batch Payment"],
+      features: [
+        "Supplier receiving transmittals with CCM line items",
+        "Display allowance & discrepancy memo audit logging",
+        "Supplier payment scheduling & tax computation",
+        "Automated subtotal & grand total ledger calculation"
+      ],
+      liveUrl: "#",
+      githubUrl: "https://github.com/Erwinrillorta0830"
+    }
+  ],
+  designs: [
+    {
+      id: "des-1",
+      title: "Shopify E-Commerce Banners & Web Graphics",
+      category: "Branding & Logos",
+      client: "LESS (Smestad, Oslo, Norway)",
+      tools: ["Adobe Photoshop", "Canva", "Shopify", "Figma"],
+      description: "Custom e-commerce homepage banners, slideshow graphics, promotional web assets, and multi-language translated media slides for Scandinavian online retail brand.",
+      imageUrl: "/images/designs/shopify_banner.png",
+      vectorStyle: "banner",
+      featured: true
+    },
+    {
+      id: "des-2",
+      title: "Custom T-Shirt & Apparel Merchandise Graphics",
+      category: "T-Shirt & Apparel",
+      client: "LESS (Oslo, Norway)",
+      tools: ["Adobe Photoshop", "Illustrator", "Canva"],
+      description: "Original t-shirt graphics, typography screen-printing layouts, urban apparel vector designs, and merchandise mockups for international fashion retail.",
+      imageUrl: "/images/designs/tshirt_merch.png",
+      vectorStyle: "tshirt",
+      featured: true
+    },
+    {
+      id: "des-3",
+      title: "Credit Awareness Social Content & Brochures",
+      category: "Social Media & Banners",
+      client: "Upper Echelon Capital LLC (Florida, USA)",
+      tools: ["Canva", "Photoshop", "Figma", "Illustrator"],
+      description: "Social media campaign graphics, marketing brochures, financial infographics, credit awareness posts, and branding documents for US clientele.",
+      imageUrl: "/images/designs/credit_marketing.png",
+      vectorStyle: "logo",
+      featured: true
+    },
+    {
+      id: "des-4",
+      title: "Agricultural Equipment Print Tarpaulins & Catalogs",
+      category: "Brochures & Print",
+      client: "A & T Agricultural Machinery Trading",
+      tools: ["Adobe Photoshop", "Canva", "CorelDRAW"],
+      description: "Large-format print tarpaulins, spare parts product marketing brochures, business calling cards, Facebook cover designs, and vehicle car wrapping promo graphics.",
+      imageUrl: "/images/designs/agricultural_print.png",
+      vectorStyle: "brochure",
+      featured: false
+    },
+    {
+      id: "des-5",
+      title: "Short-Form Video Edits & YouTube Media Reels",
+      category: "Video Editing",
+      client: "CRUTUX LLC & AIM4ASSETS LLC (USA)",
+      tools: ["Adobe Premiere Pro", "CapCut", "Photoshop"],
+      description: "High-engagement short video edits, compilation reels, color grading, animated overlays, background audio mixing, and click-worthy YouTube thumbnail designs.",
+      imageUrl: "/images/designs/youtube_reels.png",
+      vectorStyle: "video",
+      featured: false
     }
   ]
 };
@@ -233,31 +378,40 @@ interface PortfolioContextType {
 const PortfolioContext = createContext<PortfolioContextType | undefined>(undefined);
 
 export function PortfolioProvider({ children }: { children: ReactNode }) {
-  const [data, setData] = useState<PortfolioData>(defaultData);
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    const saved = localStorage.getItem('portfolio-data');
+  const [data, setData] = useState<PortfolioData>(() => {
+    if (typeof window === 'undefined') return defaultData;
+    const saved = localStorage.getItem('portfolio-data-v3');
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
-        // eslint-disable-next-line react-hooks/set-state-in-effect
-        setData({ ...defaultData, ...parsed });
+        return { ...defaultData, ...parsed };
       } catch {
         console.error("Failed to parse portfolio data");
       }
+    } else {
+      // Clear legacy cache keys
+      localStorage.removeItem('portfolio-data');
+      localStorage.removeItem('portfolio-data-v2');
     }
+    return defaultData;
+  });
+
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsLoaded(true);
   }, []);
 
   const updateData = (newData: Partial<PortfolioData>) => {
     const updated = { ...data, ...newData };
     setData(updated);
-    localStorage.setItem('portfolio-data', JSON.stringify(updated));
+    localStorage.setItem('portfolio-data-v3', JSON.stringify(updated));
   };
 
   const resetData = () => {
     setData(defaultData);
+    localStorage.removeItem('portfolio-data-v3');
     localStorage.removeItem('portfolio-data');
   };
 

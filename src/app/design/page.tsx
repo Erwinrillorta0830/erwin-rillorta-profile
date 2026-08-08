@@ -225,7 +225,7 @@ export default function DesignGalleryPage() {
                       onClick={() => setActiveModalIndex(index)}
                       className="mb-6 relative rounded-2xl overflow-hidden cursor-pointer group/media border border-white/10"
                     >
-                      <DesignVectorGraphics styleType={design.vectorStyle} imageUrl={design.imageUrl} className="w-full h-56" />
+                      <DesignVectorGraphics styleType={design.vectorStyle} imageUrl={design.imageUrl} images={design.images} className="w-full h-56" />
 
                       {/* Hover Overlay with Lightbox Icon */}
                       <div className="absolute inset-0 bg-slate-950/60 opacity-0 group-hover/media:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-2 backdrop-blur-xs">
@@ -298,7 +298,7 @@ export default function DesignGalleryPage() {
                       onClick={() => setActiveModalIndex(index)}
                       className="w-full md:w-64 h-40 shrink-0 relative rounded-2xl overflow-hidden cursor-pointer"
                     >
-                      <DesignVectorGraphics styleType={design.vectorStyle} imageUrl={design.imageUrl} className="w-full h-full" />
+                      <DesignVectorGraphics styleType={design.vectorStyle} imageUrl={design.imageUrl} images={design.images} className="w-full h-full" />
                     </div>
 
                     <div className="flex-1">
@@ -411,7 +411,7 @@ export default function DesignGalleryPage() {
 
               {/* Large Media Display */}
               <div className="mb-6 rounded-2xl overflow-hidden border border-white/10 bg-slate-950">
-                <DesignVectorGraphics styleType={currentActiveDesign.vectorStyle} imageUrl={currentActiveDesign.imageUrl} className="w-full h-80 sm:h-96" />
+                <DesignVectorGraphics styleType={currentActiveDesign.vectorStyle} imageUrl={currentActiveDesign.imageUrl} images={currentActiveDesign.images} className="w-full h-80 sm:h-96" />
               </div>
 
               {/* Metadata Badges */}

@@ -34,6 +34,7 @@ export interface DesignItem {
   tools: string[];
   description: string;
   imageUrl?: string;
+  images?: string[];
   vectorStyle: 'logo' | 'banner' | 'tshirt' | 'brochure' | 'video';
   featured?: boolean;
 }
@@ -272,20 +273,26 @@ const defaultData: PortfolioData = {
       githubUrl: "https://github.com/Erwinrillorta0830"
     },
     {
-      title: "Physical Serial Inventory Management",
-      description: "Comprehensive operational physical inventory audit & counting system. Features multi-branch scope controls, automated variance calculation, SKU grouping, and barcode product finder.",
-      tags: ["React", "TypeScript", "Inventory Audit", "Work Orders", "REST API"],
+      title: "Physical Serial & RFID Inventory Alignment System",
+      description: "Comprehensive physical inventory audit and reconciliation platform. Integrates serial numbers, RFID scanners, and barcode readers to count stock, automatically align physical vs. system inventory levels, calculate variance costs, and export audit sheets.",
+      tags: ["React", "TypeScript", "RFID Scanners", "Serial Tracking", "Inventory Audit", "REST API"],
       category: "Operations & Field",
       vectorType: "field-management",
-      imageUrl: "/images/projects/physical_serial_inventory.png",
-      images: ["/images/projects/physical_serial_inventory.png"],
+      imageUrl: "/images/projects/physical_inventory_rfid_hud.png",
+      images: [
+        "/images/projects/physical_inventory_rfid_hud.png",
+        "/images/projects/global_rfid_scanner.png",
+        "/images/projects/physical_inventory_scope.png",
+        "/images/projects/physical_serial_inventory.png"
+      ],
       featured: true,
-      metrics: ["System Variance Audit", "SKU Grouping", "Instant Product Scope"],
+      metrics: ["RFID & Serial Scanners", "System Variance Audit", "Automated Inventory Alignment"],
       features: [
-        "Real-time physical vs system count variance calculation",
-        "Branch, supplier & category scope locking filters",
-        "Loaded product finder with barcode & SKU search",
-        "Uncounted rows & zero count variance tracking"
+        "Pure scanner mode with Global RFID Scanner modal supporting hex-safe buffers & live toast feedback",
+        "Real-time physical vs system count variance calculation and total cost difference auditing",
+        "Multi-branch, supplier, category, and price-type scope filtering before loading product variants",
+        "Product Finder with SKU grouping, barcode lookup, uncounted row filters, and zero-count tracking",
+        "Go-to-offsetting workflow for instant inventory adjustment alignment & audit sheet printing"
       ],
       liveUrl: "#",
       githubUrl: "https://github.com/Erwinrillorta0830"
@@ -332,57 +339,60 @@ const defaultData: PortfolioData = {
   designs: [
     {
       id: "des-1",
+      title: "Upper Echelon Credit Restoration & Tradelines Campaign",
+      category: "Social Media & Banners",
+      client: "Upper Echelon Capital LLC (Florida, USA)",
+      tools: ["Adobe Photoshop", "Canva", "Figma", "Illustrator"],
+      description: "High-conversion credit repair campaign flyers, aged tradelines promotion graphics, luxury chauffeur advertising, and financial score package infographics for US clientele.",
+      imageUrl: "/images/designs/ue_credit_restoration.jpg",
+      images: [
+        "/images/designs/ue_credit_restoration.jpg",
+        "/images/designs/ue_tradelines_sale.jpg",
+        "/images/designs/ue_black_label_chauffeur.jpg",
+        "/images/designs/ue_cpn_approvals.jpg",
+        "/images/designs/ue_credit_sweep.jpg"
+      ],
+      vectorStyle: "logo",
+      featured: true
+    },
+    {
+      id: "des-2",
       title: "Shopify E-Commerce Banners & Web Graphics",
       category: "Branding & Logos",
       client: "LESS (Smestad, Oslo, Norway)",
       tools: ["Adobe Photoshop", "Canva", "Shopify", "Figma"],
       description: "Custom e-commerce homepage banners, slideshow graphics, promotional web assets, and multi-language translated media slides for Scandinavian online retail brand.",
       imageUrl: "/images/designs/shopify_banner.png",
+      images: ["/images/designs/shopify_banner.png"],
       vectorStyle: "banner",
       featured: true
     },
     {
-      id: "des-2",
+      id: "des-3",
       title: "Custom T-Shirt & Apparel Merchandise Graphics",
       category: "T-Shirt & Apparel",
       client: "LESS (Oslo, Norway)",
       tools: ["Adobe Photoshop", "Illustrator", "Canva"],
       description: "Original t-shirt graphics, typography screen-printing layouts, urban apparel vector designs, and merchandise mockups for international fashion retail.",
       imageUrl: "/images/designs/tshirt_merch.png",
+      images: ["/images/designs/tshirt_merch.png"],
       vectorStyle: "tshirt",
       featured: true
     },
     {
-      id: "des-3",
-      title: "Credit Awareness Social Content & Brochures",
-      category: "Social Media & Banners",
-      client: "Upper Echelon Capital LLC (Florida, USA)",
-      tools: ["Canva", "Photoshop", "Figma", "Illustrator"],
-      description: "Social media campaign graphics, marketing brochures, financial infographics, credit awareness posts, and branding documents for US clientele.",
-      imageUrl: "/images/designs/credit_marketing.png",
-      vectorStyle: "logo",
-      featured: true
-    },
-    {
       id: "des-4",
-      title: "Agricultural Equipment Print Tarpaulins & Catalogs",
-      category: "Brochures & Print",
-      client: "A & T Agricultural Machinery Trading",
-      tools: ["Adobe Photoshop", "Canva", "CorelDRAW"],
-      description: "Large-format print tarpaulins, spare parts product marketing brochures, business calling cards, Facebook cover designs, and vehicle car wrapping promo graphics.",
-      imageUrl: "/images/designs/agricultural_print.png",
-      vectorStyle: "brochure",
-      featured: false
-    },
-    {
-      id: "des-5",
-      title: "Short-Form Video Edits & YouTube Media Reels",
-      category: "Video Editing",
-      client: "CRUTUX LLC & AIM4ASSETS LLC (USA)",
-      tools: ["Adobe Premiere Pro", "CapCut", "Photoshop"],
-      description: "High-engagement short video edits, compilation reels, color grading, animated overlays, background audio mixing, and click-worthy YouTube thumbnail designs.",
-      imageUrl: "/images/designs/youtube_reels.png",
-      vectorStyle: "video",
+      title: "Houston Black Label Luxury Chauffeur Campaign",
+      category: "Social Media & Banners",
+      client: "Upper Echelon / Experience Consultants",
+      tools: ["Adobe Photoshop", "Illustrator", "Canva"],
+      description: "Luxury red-and-black marketing banner advertising airport pickup & everyday driving featuring Cadillac Escalade and Mercedes Benz S-Class vehicles.",
+      imageUrl: "/images/designs/ue_black_label_chauffeur.jpg",
+      images: [
+        "/images/designs/ue_black_label_chauffeur.jpg",
+        "/images/designs/ue_credit_sweep.jpg",
+        "/images/designs/ue_cpn_approvals.jpg"
+      ],
+      vectorStyle: "banner",
       featured: false
     }
   ]

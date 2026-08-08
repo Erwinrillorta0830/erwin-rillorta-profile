@@ -59,7 +59,7 @@ export default function DesignOverview() {
               <GlassCard accent="rose" className="h-full flex flex-col p-6 group hover:translate-y-[-4px] transition-transform duration-300">
                 {/* Vector Artwork Header */}
                 <div className="mb-6">
-                  <DesignVectorGraphics styleType={design.vectorStyle} imageUrl={design.imageUrl} className="w-full h-44" />
+                  <DesignVectorGraphics styleType={design.vectorStyle} imageUrl={design.imageUrl} images={design.images} className="w-full h-44" />
                 </div>
 
                 <div className="flex-1 flex flex-col justify-between">

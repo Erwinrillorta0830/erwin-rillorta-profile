@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { usePortfolio } from '@/context/PortfolioContext';
 import { GlassCard } from './ui/GlassCard';
 import { GlowingBadge } from './ui/GlowingBadge';
-import { Terminal, Server, Sparkles, Award, GraduationCap, Laptop, ArrowLeftRight } from 'lucide-react';
+import { Terminal, Server, Sparkles, Award, GraduationCap, Laptop, ArrowLeftRight, ExternalLink } from 'lucide-react';
 
 type Mode = 'all' | 'IT' | 'VA';
 
@@ -272,15 +272,26 @@ export default function About() {
                 <div className="flex flex-col gap-2 text-xs font-mono text-slate-400">
                   <div className="flex items-center justify-between">
                     <span className="text-slate-500">Contact:</span>
-                    <span className="text-slate-200">{data.phone}</span>
+                    <a href={`tel:${data.phone}`} className="text-slate-200 hover:text-blue-400 transition-colors">
+                      {data.phone}
+                    </a>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-slate-500">Email:</span>
-                    <span className="text-slate-200">{data.email}</span>
+                    <a href={`mailto:${data.email}`} className="text-slate-200 hover:text-blue-400 transition-colors">
+                      {data.email}
+                    </a>
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-slate-500">Portfolio:</span>
-                    <span className="text-blue-400 font-bold">{data.portfolioUrl}</span>
+                    <a 
+                      href={data.portfolioUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-blue-400 font-bold hover:text-blue-300 hover:underline flex items-center gap-1 transition-colors"
+                    >
+                      View Portfolio <ExternalLink size={12} />
+                    </a>
                   </div>
                 </div>
               </div>

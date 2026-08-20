@@ -72,9 +72,9 @@ const defaultData: PortfolioData = {
   aboutVAText1: "I am a versatile Executive Virtual Assistant, Content Creator, and E-commerce Specialist. I help international clients, businesses, and brands in Norway, the US, and the Philippines streamline administrative tasks, expand online reach, and boost revenue across TikTok, YouTube, Shopify, Etsy, and eBay.",
   aboutVAText2: "My expertise spans Social Media Management, Graphic Design (brochures, logos, T-shirt designs), Video Editing (TikTok/YouTube content), workflow automations (Zapier, ChatGPT & Google Sheets AI prompts, Dropbox), content scheduling, SEO, and e-commerce product listings.",
   email: "erwinrillorta.0330@gmail.com",
-  phone: "09396073451",
-  location: "Dagupan City, Pangasinan, Philippines",
-  portfolioUrl: "myprofile.ph/erwinrillorta",
+  phone: "09673025852",
+  location: "Mangaldan, Pangasinan, Philippines",
+  portfolioUrl: "https://drive.google.com/drive/folders/1A8SuUnqbIZxGXgNMAYT1CSUqX7axHxKK",
   education: {
     tertiary: {
       school: "Universidad de Dagupan",
@@ -127,7 +127,7 @@ const defaultData: PortfolioData = {
       role: "Project Manager & Senior ERP Developer",
       company: "Vertex Technology Corporation",
       location: "Philippines",
-      date: "April 2025 – Present",
+      date: "April 2025 – July 2025",
       category: "IT",
       description: [
         "Lead developer for enterprise ERP modules (Sales, Purchasing, Serialized Tracking, RFID Integration).",

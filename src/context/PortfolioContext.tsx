@@ -127,7 +127,7 @@ const defaultData: PortfolioData = {
       role: "Project Manager & Senior ERP Developer",
       company: "Vertex Technology Corporation",
       location: "Philippines",
-      date: "April 2025 – July 2026",
+      date: "April 2025 – September 2026",
       category: "IT",
       description: [
         "Lead developer for enterprise ERP modules (Sales, Purchasing, Serialized Tracking, RFID Integration).",
